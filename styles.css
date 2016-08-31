@@ -12,3 +12,7 @@ u1{
     width:100%;
     background-color:cyan;
 }
+li{
+    float:left;
+    width:33%;
+}
