@@ -9,5 +9,6 @@ u1{
     margin:0;
     padding:0;
     display:block;
-    width:60px;
+    width:100%;
+    background-color:cyan;
 }
