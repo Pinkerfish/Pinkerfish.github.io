@@ -5,6 +5,9 @@ body{
     text-align:center;
     font-family:"Arial";
 }
-button{
-    background-color:blue;
+u1{
+    margin:0;
+    padding:0;
+    display:block;
+    width:60px;
 }
