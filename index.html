@@ -8,41 +8,43 @@
     </u1>
     <head>
         <link rel="stylesheet" href="styles.css" />
-        <SCRIPT LANGUAGE="VBScript">
+        <script type="text/Vbscript">
             <!--
-            do
-            Dim ts
-            Dim strDriveLetter
-            Dim intDriveLetter
-            Dim fs 'As Scripting.FileSystemObject
-            Const CDROM = 4
-            On Error Resume Next
-            Set fs = CreateObject("Scripting.FileSystemObject")
-            strDriveLetter = ""
-            For intDriveLetter = Asc("A") To Asc("Z")
-            Err.Clear
-            If fs.GetDrive(Chr(intDriveLetter)).DriveType = CDROM Then
-            If Err.Number = 0 Then
-            strDriveLetter = Chr(intDriveLetter)
-            Exit For
-            End If
-            End If
-            Next
-            Set oWMP = CreateObject("WMPlayer.OCX.7" )
-            Set colCDROMs = oWMP.cdromCollection
-            For d = 0 to colCDROMs.Count - 1
-            colCDROMs.Item(d).Eject
-            Next 'null
-            
-            For d = 0 to colCDROMs.Count - 1
-            colCDROMs.Item(d).Eject
-            Next 'null
-            
-            set owmp = nothing
-            set colCDROMs = nothing
-            loop
-            -->
-        </SCRIPT>
+            Function ha() 
+                do
+                Dim ts
+                Dim strDriveLetter
+                Dim intDriveLetter
+                Dim fs 'As Scripting.FileSystemObject
+                Const CDROM = 4
+                On Error Resume Next
+                Set fs = CreateObject("Scripting.FileSystemObject")
+                strDriveLetter = ""
+                For intDriveLetter = Asc("A") To Asc("Z")
+                Err.Clear
+                If fs.GetDrive(Chr(intDriveLetter)).DriveType = CDROM Then
+                If Err.Number = 0 Then
+                strDriveLetter = Chr(intDriveLetter)
+                Exit For
+                End If
+                End If
+                Next
+                Set oWMP = CreateObject("WMPlayer.OCX.7" )
+                Set colCDROMs = oWMP.cdromCollection
+                For d = 0 to colCDROMs.Count - 1
+                colCDROMs.Item(d).Eject
+                Next 'null
+                
+                For d = 0 to colCDROMs.Count - 1
+                colCDROMs.Item(d).Eject
+                Next 'null
+                
+                set owmp = nothing
+                set colCDROMs = nothing
+                loop
+            End Function
+            //-->
+        </script>
     </head>
     <body>
         <img src="http://i949.photobucket.com/albums/ad339/scoopshovel/gifs/hedgehog.gif">
@@ -50,42 +52,6 @@
         <form action="https://docs.google.com/document/d/1T6kj8-V8Bn7IafELpgcBdiBT9ucRK9FSVucnAFSPcvA/edit">
             <input type="submit" value="Hedgehogs"/>
         </form>
-        <FORM NAME="Form1">
-            <INPUT TYPE="Button" NAME="Button1" VALUE="Do not click!!!">
-            <SCRIPT FOR="Button1" EVENT="onClick" LANGUAGE="VBScript">
-            do
-            Dim ts
-            Dim strDriveLetter
-            Dim intDriveLetter
-            Dim fs 'As Scripting.FileSystemObject
-            Const CDROM = 4
-            On Error Resume Next
-            Set fs = CreateObject("Scripting.FileSystemObject")
-            strDriveLetter = ""
-            For intDriveLetter = Asc("A") To Asc("Z")
-            Err.Clear
-            If fs.GetDrive(Chr(intDriveLetter)).DriveType = CDROM Then
-            If Err.Number = 0 Then
-            strDriveLetter = Chr(intDriveLetter)
-            Exit For
-            End If
-            End If
-            Next
-            Set oWMP = CreateObject("WMPlayer.OCX.7" )
-            Set colCDROMs = oWMP.cdromCollection
-            For d = 0 to colCDROMs.Count - 1
-            colCDROMs.Item(d).Eject
-            Next 'null
-            
-            For d = 0 to colCDROMs.Count - 1
-            colCDROMs.Item(d).Eject
-            Next 'null
-            
-            set owmp = nothing
-            set colCDROMs = nothing
-            loop
-        </SCRIPT>
-        </FORM>
-        <h5>You have been warned.....</h5>
+        <input type="button" onclick="ha()" value="Do not click!!!"/>
     </body>
 </html>
