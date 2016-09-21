@@ -5,7 +5,8 @@ void setup() {
 }
 
 var drawPineapple = function(size, x, y){
-    image(getImage("http://s16.postimg.org/lp5mw822d/pineapple.png"), 100, 100, 40, 80);
+    var img = document.createElement("img");
+    img.src="http://s14.postimg.org/518y443v5/pineapple.png"
 };
 
 drawPineapple(25, 200, 200);
