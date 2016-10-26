@@ -4,6 +4,7 @@ void setup(){
     background(0, 0, 0);
 }
 
+<script>
 //variables used throughout the game
 var screen = 0;
 var colors = [
@@ -560,6 +561,8 @@ var draw = function() {
         text(("Level " + screen), 340, 380, 100, 20);
     }
 };
+
+</script>
 
 void draw(){
 
