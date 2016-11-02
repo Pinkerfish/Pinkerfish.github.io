@@ -478,7 +478,7 @@ var screen0 = function(){
         x3 += 2;
     }
     //  var mouseColor = get(mouseX, mouseY);  
-    if (mouseIsPressed){
+    if (mousePressed){
         mouseColor = get(mouseX, mouseY);
         for (var x = 0; x < colors.length; x++){
             if (mouseColor === colors[x]){
@@ -513,7 +513,7 @@ var screen1 = function(){
             }
         }
     }
-    if (mouseIsPressed){
+    if (mousePressed){
         mouseColor = get(mouseX, mouseY);
         for (var x = 0; x < colors.length; x++){
             if (mouseColor === colors[x]){
