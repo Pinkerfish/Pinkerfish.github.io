@@ -474,7 +474,7 @@ var gameOver = function(){
         textSize(20);
         fill(0, 0, 0);
         text("Play Again", 50, 370, 180, 50);
-        if (mousePressed){
+        if (mouseIsPressed){
             screen = 0;
         }
     } else if (mouseX > 200 && mouseX <= 400 && mouseY >= 350 && mouseY <= 400){
@@ -529,7 +529,7 @@ var screen0 = function(){
         x3 += 2;
     }
     //  var mouseColor = get(mouseX, mouseY);  
-    if (mousePressed){
+    if (mouseIsPressed){
         mouseColor = get(mouseX, mouseY);
         for (var x = 0; x < colors.length; x++){
             if (mouseColor === colors[x]){
@@ -564,7 +564,7 @@ var screen1 = function(){
             }
         }
     }
-    if (mousePressed){
+    if (mouseIsPressed){
         mouseColor = get(mouseX, mouseY);
         for (var x = 0; x < colors.length; x++){
             if (mouseColor === colors[x]){
@@ -585,7 +585,7 @@ var screen2 = function(){
     fill(0, 0, 0);
     textSize(27);
     text("Catch Little Billy Bob Joe Again!", 10, 20, 400, 400);
-    if (mousePressed){
+    if (mouseIsPressed){
         mouseColor = get(mouseX, mouseY);
         for (var x = 0; x < colors.length; x++){
             if (mouseColor === colors[x]){
@@ -624,13 +624,13 @@ var screen3 = function(){
         text("B: 6 months", 210, 150, 200, 200);
         text("C: 2 years", 10, 190, 200, 200);
         text("D: 3 years", 210, 190, 200, 200);
-        if (mousePressed && mouseX >= 210 && mouseX <= 400 && mouseY >= 180 && mouseY <= 220){
+        if (mouseIsPressed && mouseX >= 210 && mouseX <= 400 && mouseY >= 180 && mouseY <= 220){
             screen = 4;
-        } else if (mousePressed && mouseX >= 10 && mouseX <= 210 && mouseY >= 140 && mouseY <= 180){
+        } else if (mouseIsPressed && mouseX >= 10 && mouseX <= 210 && mouseY >= 140 && mouseY <= 180){
             gameOver();
-        } else if (mousePressed && mouseX >= 210 && mouseX <=400 && mouseY >= 140 && mouseY <= 180){
+        } else if (mouseIsPressed && mouseX >= 210 && mouseX <=400 && mouseY >= 140 && mouseY <= 180){
             gameOver();
-        } else if (mousePressed && mouseX >= 10 && mouseX <= 210 && mouseY >= 180 && mouseY <= 220){
+        } else if (mouseIsPressed && mouseX >= 10 && mouseX <= 210 && mouseY >= 180 && mouseY <= 220){
             gameOver();
         }
         fill(red3, green3, 0);
@@ -731,3 +731,8 @@ var draw = function() {
         text(("Level " + screen), 340, 380, 100, 20);
     }
 };
+
+
+void draw(){
+
+}
