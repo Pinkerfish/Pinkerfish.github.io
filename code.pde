@@ -1,6 +1,6 @@
 void setup(){
     size(400, 400);
-    frameRate(30);
+    frameRate(1);
     background(0, 0, 0);
 }
 
@@ -25,7 +25,7 @@ var colors = [
     color(18, 115, 9),
 ];
 //function that draws a pineapple, requires parameters size, which is the size of a pineapple pixel, x, which is the x location of the bottom left pixel, and y, which is the y location of the bottom left pixel
-var drawPineapple = function(size, x, y){
+var drawPineapple = function(size, x, y, face){
     noStroke();
     //row 1
     fill(colors[1]);
@@ -422,17 +422,68 @@ var drawPineapple = function(size, x, y){
     quad(x+size, y-size*31, x+size, y-size*30, x+size*2, y-size*30, x+size*2, y-size*31);
     //row 33
     quad(x+size, y-size*32, x+size, y-size*31, x+size*2, y-size*31, x+size*2, y-size*32);
+    //draws face if needed: 1 = happy, 2 = sad, 3 = grin
+    if (face === 1){
+        
+    } else if (face === 2){
+        fill(0, 0, 0);
+        quad(x-size*0.5, y-size*5, x+size*1.25, y-size*5, x+size*1.25, y-size*6.75, x-size*0.5, y-size*6.75);
+        quad(x+size*4.5, y-size*5, x+size*6.25, y-size*5, x+size*6.25, y-size*6.75, x+size*4.5, y-size*6.75);
+        fill(255, 255, 255);
+        ellipse(x, y-size*6.25, size-1, size-1);
+        ellipse(x+size*5, y-size*6.25, size-1, size-1);
+        fill(0, 0, 0);
+        arc(x+size*3, y-size*4, size*5, size*5, 0, 180);
+    } else if (face === 3){
+        fill(0, 0, 0);
+        quad(x-size*0.5, y-size*5, x+size*1.25, y-size*5, x+size*1.25, y-size*6.75, x-size*0.5, y-size*6.75);
+        quad(x+size*4.5, y-size*5, x+size*6.25, y-size*5, x+size*6.25, y-size*6.75, x+size*4.5, y-size*6.75);
+        fill(255, 255, 255);
+        ellipse(x, y-size*6.25, size-1, size-1);
+        ellipse(x+size*5, y-size*6.25, size-1, size-1);
+        fill(0, 0, 0);
+        arc(x+size*3, y-size*4, size*5, size*5, 0, 180);
+    }
 };
+//variables used in gameOver
+var playAgain = color(0, 255, 68);
+var giveUp = color(222, 53, 53);
+//gameOver screen
 var gameOver = function(){
     screen = null;
     background(255, 255, 255);
     fill(0, 0, 0);
-    text("Game Over", 10, 50, 390, 100);
-    drawPineapple(6, 190, 325);
-    //draws face on pineapple
+    textSize(72);
+    text("Game Over", 10, 40, 390, 100);
+    drawPineapple(6, 190, 300, 2);
+    drawPineapple(2, 50, 50, 2);
+    //draws buttons
+    fill(playAgain);
+    quad(0, 350, 0, 400, 200, 400, 200, 350);
+    textSize(20);
     fill(0, 0, 0);
-    quad(190, 260, 200, 260, 200, 270, 190, 270);
-    quad(215, 260, 225, 260, 225, 270, 215, 270);
+    text("Play Again", 50, 370, 180, 50);
+    fill(giveUp);
+    quad(200, 350, 200, 400, 400, 400, 400, 350);
+    textSize(20);
+    fill(0, 0, 0);
+    text("Give Up", 265, 370, 180, 50);
+    if (mouseX >= 0 && mouseX < 200 && mouseY >= 350 && mouseY <= 400){
+        fill(0, 191, 3);
+        quad(0, 350, 0, 400, 200, 400, 200, 350);
+        textSize(20);
+        fill(0, 0, 0);
+        text("Play Again", 50, 370, 180, 50);
+        if (mousePressed){
+            screen = 0;
+        }
+    } else if (mouseX > 200 && mouseX <= 400 && mouseY >= 350 && mouseY <= 400){
+        fill(184, 35, 35);
+        quad(200, 350, 200, 400, 400, 400, 400, 350);
+        textSize(20);
+        fill(0, 0, 0);
+        text("Give Up", 265, 370, 180, 50);
+    }
 };
 
 //variables used in screen 0
@@ -523,12 +574,132 @@ var screen1 = function(){
     }
 };
 //variables used in screen 2
-var x2 = 200;
-var y2 = 375;
+var x2;
+var y2;
 //screen 2
 var screen2 = function(){
     background(255, 255, 255);
+    x2 = random(0, 400);
+    y2 = random(0, 400);
     drawPineapple(2, x2, y2);
+    fill(0, 0, 0);
+    textSize(27);
+    text("Catch Little Billy Bob Joe Again!", 10, 20, 400, 400);
+    if (mousePressed){
+        mouseColor = get(mouseX, mouseY);
+        for (var x = 0; x < colors.length; x++){
+            if (mouseColor === colors[x]){
+                screen = 3;
+            }
+        }
+    }
+};
+//variables used in screen 3
+var timer = 500;
+var red3 = 0;
+var green3 = 255;
+//screen 3
+var screen3 = function(){
+    background(255, 255, 255);
+    textSize(23);
+    noStroke();
+    text("Quick! Pineapple trivia! How long does it take a pineapple to mature?", 10, 20, 390, 400);
+    timer -= 2;
+    if (timer <= 400){
+        if (mouseX >= 10 && mouseX <= 210 && mouseY >= 140 && mouseY <= 180){
+            fill(200, 200, 200);
+            rect(10, 140, 200, 40);
+        } else if (mouseX >= 210 && mouseX <= 400 && mouseY >= 140 && mouseY <= 180){
+            fill(200, 200, 200);
+            rect(200, 140, 200, 40);
+        } else if (mouseX >= 10 && mouseX <= 210 && mouseY >= 180 && mouseY <= 220){
+            fill(200, 200, 200);
+            rect(10, 180, 200, 40);
+        } else if (mouseX >= 210 && mouseX <= 400 && mouseY >= 180 && mouseY <= 220){
+            fill(200, 200, 200);
+            rect(200, 180, 200, 40);
+        }
+        fill(0, 0, 0);
+        text("A: 3 months", 10, 150, 200, 200);
+        text("B: 6 months", 210, 150, 200, 200);
+        text("C: 2 years", 10, 190, 200, 200);
+        text("D: 3 years", 210, 190, 200, 200);
+        if (mousePressed && mouseX >= 210 && mouseX <= 400 && mouseY >= 180 && mouseY <= 220){
+            screen = 4;
+        } else if (mousePressed && mouseX >= 10 && mouseX <= 210 && mouseY >= 140 && mouseY <= 180){
+            gameOver();
+        } else if (mousePressed && mouseX >= 210 && mouseX <=400 && mouseY >= 140 && mouseY <= 180){
+            gameOver();
+        } else if (mousePressed && mouseX >= 10 && mouseX <= 210 && mouseY >= 180 && mouseY <= 220){
+            gameOver();
+        }
+        fill(red3, green3, 0);
+        if (red3 < 255){
+            red3 += 2;
+        } else {
+            green3 -= 2;
+        }
+        rect(0, 350, timer, 20);
+        if (timer <= 0){
+            gameOver();
+        }
+    }
+};
+//variables used in screen4
+var clue = function(){
+    if (mouseX >= 245 && mouseX <= 265 && mouseY >= 10 && mouseY <= 30){
+        textSize(35);
+        background(247, 237, 190);
+        text("To the finder of the clue: ", 10, 40, 380, 340);
+        textSize(20);
+        text("First go the direction that a firery star travels each morning. Then go the direction opposite of fire and heat.", 10, 100, 380, 340);
+    }
+};
+var mazeColor = color(6, 87, 36);
+var drawMaze = function(){
+    fill(34, 255, 0);
+    quad(245, 10, 265, 10, 265, 30, 245, 30);
+    background(mazeColor);
+    fill(255, 255, 255);
+    rect(170, 300, 70, 100);
+    rect(230, 300, 75, 10);
+    rect(300, 300, 10, 65);
+    rect(300, 365, 60, 10);
+    rect(360, 200, 10, 175);
+    rect(360, 200, 40, 10);
+    rect(280, 120, 120, 10);
+    rect(280, 0, 10, 120);
+    rect(220, 0, 10, 200);
+    rect(220, 200, 75, 10);
+    clue();
+};
+var start = false;
+//screen 4
+var screen4 = function(){
+    if (start === false){
+        background(255, 255, 255);
+        textSize(19.9);
+        text("Place your cursor on the pineapple to start!", 10, 20, 380, 380);
+        drawPineapple(1.5, 200, 380);
+        mouseColor = get(mouseX, mouseY);
+        for (var x = 0; x < colors.length; x++){
+            if (mouseColor === colors[x]){
+                start = true;
+            }
+        }
+    } else{
+        background(255, 255, 255);
+        drawPineapple(1.5, mouseX - 5, mouseY + 20);
+        drawMaze();
+        mouseColor = get(mouseX, mouseY);
+        if (mouseColor === mazeColor){
+            gameOver();
+        }
+    }
+};
+//screen 5
+var screen5 = function(){
+
 };
 
 //draw function bringing all the screens together
@@ -540,11 +711,11 @@ var draw = function() {
     } else if (screen === 2){
         screen2();
     } else if (screen === 3){
-        
+        screen3();
     } else if (screen === 4){
-        
+        screen4();
     } else if (screen === 5){
-        
+        screen5();
     } else if (screen === 6){
         
     } else if (screen === 7){
@@ -560,7 +731,3 @@ var draw = function() {
         text(("Level " + screen), 340, 380, 100, 20);
     }
 };
-
-void draw(){
-
-}
