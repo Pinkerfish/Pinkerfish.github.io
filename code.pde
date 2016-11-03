@@ -502,28 +502,28 @@ var screen0 = function(){
     text("Best of luck: The Pineapples", 10, 260, 390, 100);
     drawPineapple(2, x0, 400);
     drawPineapple(2, x0, 75);
-    if (x0 === 400){
+    if (x0 >= 400){
         x0 = 0;
     } else {
         x0 += 2;
     }
     drawPineapple(2, x1, 400);
     drawPineapple(2, x1, 75);
-    if (x1 === 400){
+    if (x1 >= 400){
         x1 = 0;
     } else {
         x1 += 2;
     }
     drawPineapple(2, x2, 400);
     drawPineapple(2, x2, 75);
-    if (x2 === 400) {
+    if (x2 >= 400) {
         x2 = 0;
     } else {
         x2 += 2;
     }
     drawPineapple(2, x3, 400);
     drawPineapple(2, x3, 75);
-    if (x3 === 400){
+    if (x3 >= 400){
         x3 = 0; 
     } else {
         x3 += 2;
