@@ -487,7 +487,7 @@ var gameOver = function(){
 };
 
 //variables used in screen 0
-var x0 = 0;
+var x0 = 200;
 var x1 = 100;
 var x2 = 200;
 var x3 = 300;
