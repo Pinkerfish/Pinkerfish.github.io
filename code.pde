@@ -4,7 +4,7 @@ void setup(){
     background(0, 0, 0);
 }
 
-//variables used throughout the game
+//define variables
 var screen = 0;
 var colors = [
     //yellow
@@ -445,6 +445,55 @@ var drawPineapple = function(size, x, y, face){
         arc(x+size*3, y-size*4, size*5, size*5, 0, 180);
     }
 };
+//variables used in screen 0
+var x0 = 200;
+var x1 = 100;
+var x2 = 200;
+var x3 = 300;
+//variables used in screen 1
+var startText = 200;
+var pineapple = 0;
+var pineapple2 = 100;
+//variables used in screen 3
+var timer = 500;
+var red3 = 0;
+var green3 = 255;
+//variables used in screen4
+var clue = function(){
+    if (mouseX >= 245 && mouseX <= 265 && mouseY >= 10 && mouseY <= 30){
+        textSize(35);
+        background(247, 237, 190);
+        text("To the finder of the clue: ", 10, 40, 380, 340);
+        textSize(20);
+        text("First go the direction that a firery star travels each morning. Then go the direction opposite of fire and heat.", 10, 100, 380, 340);
+    }
+};
+var mazeColor = color(6, 87, 36);
+var drawMaze = function(){
+    fill(34, 255, 0);
+    quad(245, 10, 265, 10, 265, 30, 245, 30);
+    background(194, 155, 194);
+    fill(255, 255, 255);
+    rect(180, 300, 40, 100);
+    clue();
+};
+var start = false;
+
+//function resetting all variables
+var resetVars = function(){
+    screen = 0;
+    x0 = 0;
+    x1 = 100;
+    x2 = 200;
+    x3 = 300;
+    startText = 200;
+    pineapple = 0;
+    pineapple2 = 100;
+    timer = 500;
+    red3 = 0;
+    green3 = 255;
+};
+
 //variables used in gameOver
 var playAgain = color(0, 255, 68);
 var giveUp = color(222, 53, 53);
@@ -476,6 +525,7 @@ var gameOver = function(){
         text("Play Again", 50, 370, 180, 50);
         if (mousePressed){
             screen = 0;
+            resetVars();
         }
     } else if (mouseX > 200 && mouseX <= 400 && mouseY >= 350 && mouseY <= 400){
         fill(184, 35, 35);
@@ -486,11 +536,7 @@ var gameOver = function(){
     }
 };
 
-//variables used in screen 0
-var x0 = 200;
-var x1 = 100;
-var x2 = 200;
-var x3 = 300;
+
 var mouseColor = get(mouseX, mouseY);
 //screen 0
 var screen0 = function(){
@@ -538,10 +584,6 @@ var screen0 = function(){
         }
     }
 };
-//variables used in screen 1
-var startText = 200;
-var pineapple = 0;
-var pineapple2 = 100;
 //screen 1
 var screen1 = function(){
     background(255, 255, 255);
@@ -594,10 +636,6 @@ var screen2 = function(){
         }
     }
 };
-//variables used in screen 3
-var timer = 500;
-var red3 = 0;
-var green3 = 255;
 //screen 3
 var screen3 = function(){
     background(255, 255, 255);
@@ -645,57 +683,11 @@ var screen3 = function(){
         }
     }
 };
-//variables used in screen4
-var clue = function(){
-    if (mouseX >= 245 && mouseX <= 265 && mouseY >= 10 && mouseY <= 30){
-        textSize(35);
-        background(247, 237, 190);
-        text("To the finder of the clue: ", 10, 40, 380, 340);
-        textSize(20);
-        text("First go the direction that a firery star travels each morning. Then go the direction opposite of fire and heat.", 10, 100, 380, 340);
-    }
-};
-var mazeColor = color(6, 87, 36);
-var drawMaze = function(){
-    fill(34, 255, 0);
-    quad(245, 10, 265, 10, 265, 30, 245, 30);
-    background(mazeColor);
-    fill(255, 255, 255);
-    rect(170, 300, 70, 100);
-    rect(230, 300, 75, 10);
-    rect(300, 300, 10, 65);
-    rect(300, 365, 60, 10);
-    rect(360, 200, 10, 175);
-    rect(360, 200, 40, 10);
-    rect(280, 120, 120, 10);
-    rect(280, 0, 10, 120);
-    rect(220, 0, 10, 200);
-    rect(220, 200, 75, 10);
-    clue();
-};
-var start = false;
 //screen 4
 var screen4 = function(){
-    if (start === false){
-        background(255, 255, 255);
-        textSize(19.9);
-        text("Place your cursor on the pineapple to start!", 10, 20, 380, 380);
-        drawPineapple(1.5, 200, 380);
-        mouseColor = get(mouseX, mouseY);
-        for (var x = 0; x < colors.length; x++){
-            if (mouseColor === colors[x]){
-                start = true;
-            }
-        }
-    } else{
-        background(255, 255, 255);
-        drawPineapple(1.5, mouseX - 5, mouseY + 20);
-        drawMaze();
-        mouseColor = get(mouseX, mouseY);
-        if (mouseColor === mazeColor){
-            gameOver();
-        }
-    }
+    background(255, 255, 255);
+    textSize(30);
+    text("More Levels Coming Soon!", 10, 50, 380, 380);
 };
 //screen 5
 var screen5 = function(){
